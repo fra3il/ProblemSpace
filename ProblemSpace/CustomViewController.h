@@ -11,4 +11,5 @@
 @interface CustomViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property(nonatomic) float angle;
+@property(nonatomic) BOOL isToggle;
 @end
