@@ -10,4 +10,5 @@
 
 @interface CustomViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property(nonatomic) float angle;
 @end

@@ -15,6 +15,9 @@
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIButton *button;
+@property (strong, nonatomic) UIButton *addCellButton1;
+@property (strong, nonatomic) UIButton *addCellButton2;
+@property (strong, nonatomic) UIButton *addcellButton3;
 
 @end
 
@@ -23,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    _angle = 45;
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     [_tableView registerNib:[UINib nibWithNibName:@"CustomTableViewCell1" bundle:nil] forCellReuseIdentifier:@"cell1"];
     [_tableView registerNib:[UINib nibWithNibName:@"CustomTableViewCell2" bundle:nil] forCellReuseIdentifier:@"cell2"];
@@ -36,7 +39,7 @@
     
     _button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
     _button.backgroundColor = [UIColor redColor];
-    [_button setTitle:@"Button" forState:UIControlStateNormal];
+    [_button setTitle:@"+" forState:UIControlStateNormal];
     [_button addTarget:self action:@selector(buttonDidTouched:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_button];
 }
@@ -45,7 +48,7 @@
 {
     [super viewDidLayoutSubviews];
     
-    _button.frame = CGRectMake(self.view.frame.size.width - 100, self.view.frame.size.height - 70, 80, 50);
+    _button.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 70, 50, 50);
     _tableView.frame = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height-20);
 }
 
@@ -68,7 +71,13 @@
 
 - (void)buttonDidTouched:(UIButton *)sender
 {
-    NSLog(@"LOG");
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDuration:1];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    self.button.transform = CGAffineTransformMakeRotation((_angle*M_PI)/180);
+    _angle=(_angle == 45 ? 0:45); //다음 터치에 대응하여 0도와 45도 사이로 앵글값 조정
+    [UIView commitAnimations];
 }
 
 @end
