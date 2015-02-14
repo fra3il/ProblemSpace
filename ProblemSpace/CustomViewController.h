@@ -10,6 +10,8 @@
 
 @interface CustomViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic) int count;
 @property(nonatomic) float angle;
 @property(nonatomic) BOOL isToggle;
+
 @end

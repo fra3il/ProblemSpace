@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7BEA89161A8F636600F2A495 /* 1-AddButtonFinal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BEA89151A8F636600F2A495 /* 1-AddButtonFinal.png */; };
 		9A57662D1A8DCF3C002F8B11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A57662C1A8DCF3C002F8B11 /* main.m */; };
 		9A5766301A8DCF3C002F8B11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A57662F1A8DCF3C002F8B11 /* AppDelegate.m */; };
 		9A5766331A8DCF3C002F8B11 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5766321A8DCF3C002F8B11 /* ViewController.m */; };
@@ -35,7 +34,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7BEA89151A8F636600F2A495 /* 1-AddButtonFinal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-AddButtonFinal.png"; path = "../../1-AddButtonFinal.png"; sourceTree = "<group>"; };
 		9A5766271A8DCF3C002F8B11 /* ProblemSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProblemSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A57662B1A8DCF3C002F8B11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A57662C1A8DCF3C002F8B11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -80,14 +78,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7BEA89171A8F63BB00F2A495 /* image */ = {
-			isa = PBXGroup;
-			children = (
-				7BEA89151A8F636600F2A495 /* 1-AddButtonFinal.png */,
-			);
-			name = image;
-			sourceTree = "<group>";
-		};
 		9A57661E1A8DCF3C002F8B11 = {
 			isa = PBXGroup;
 			children = (
@@ -109,7 +99,6 @@
 		9A5766291A8DCF3C002F8B11 /* ProblemSpace */ = {
 			isa = PBXGroup;
 			children = (
-				7BEA89171A8F63BB00F2A495 /* image */,
 				9A5766531A8DD188002F8B11 /* cells */,
 				9A57662E1A8DCF3C002F8B11 /* AppDelegate.h */,
 				9A57662F1A8DCF3C002F8B11 /* AppDelegate.m */,
@@ -249,7 +238,6 @@
 			files = (
 				9A5766651A8DD411002F8B11 /* CustomTableViewCell3.xib in Resources */,
 				9A57665B1A8DD1E6002F8B11 /* CustomTableViewCell1.xib in Resources */,
-				7BEA89161A8F636600F2A495 /* 1-AddButtonFinal.png in Resources */,
 				9A5766361A8DCF3C002F8B11 /* Main.storyboard in Resources */,
 				9A57663B1A8DCF3C002F8B11 /* LaunchScreen.xib in Resources */,
 				9A5766381A8DCF3C002F8B11 /* Images.xcassets in Resources */,
