@@ -13,6 +13,11 @@
 
 @interface CustomViewController ()
 
+@property (nonatomic) int count;
+@property (nonatomic) float angle;
+@property (nonatomic) BOOL isToggle;
+@property (nonatomic) int i;
+@property (nonatomic) int cellCount;
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIButton *button;
 @property (strong, nonatomic) UIButton *addCellButton1;
@@ -28,9 +33,9 @@
 {
     [super viewDidLoad];
     _angle = 0;
-    _count=0;
+    _count = 0;
     _isToggle = true;
-    
+    _cellCount = 0;
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     [_tableView registerNib:[UINib nibWithNibName:@"CustomTableViewCell1" bundle:nil] forCellReuseIdentifier:@"cell1"];
     [_tableView registerNib:[UINib nibWithNibName:@"CustomTableViewCell2" bundle:nil] forCellReuseIdentifier:@"cell2"];
@@ -76,11 +81,11 @@
 {
     [super viewDidLayoutSubviews];
     
-    _button.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 70, 30, 30);
+    _button.frame = CGRectMake(self.view.frame.size.width - 50, self.view.frame.size.height - 70, 30, 30);
     _tableView.frame = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height-20);
-    _addCellButton1.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 70, 30, 30);
-    _addCellButton2.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 70, 30, 30);
-    _addCellButton3.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 70, 30, 30);
+    _addCellButton1.frame = CGRectMake(self.view.frame.size.width - 70, self.view.frame.size.height - 70, 30, 30);
+    _addCellButton2.frame = CGRectMake(self.view.frame.size.width - 70, self.view.frame.size.height - 70, 30, 30);
+    _addCellButton3.frame = CGRectMake(self.view.frame.size.width - 70, self.view.frame.size.height - 70, 30, 30);
 }
 
 #pragma mark - Table view
@@ -95,31 +100,33 @@
     NSString *cellID1=@"cell1";
     NSString *cellID2=@"cell2";
     NSString *cellID3=@"cell3";
+    
     NSLog(@"cellforRowAtIndexPath");
-    UITableViewCell *cell = nil;
-    if (indexPath.row==0){
-        NSLog(@"if==0");
-        cell =[tableView dequeueReusableCellWithIdentifier:cellID1];
+    id returnCell = nil;
+    if (_i == 0){
+        CustomTableViewCell1 *cell =[tableView dequeueReusableCellWithIdentifier:cellID1];
         if (cell == nil)
         {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID1];
+            cell = [[CustomTableViewCell1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID1];
         }
-    }else if(indexPath.row==1){
-        cell =[tableView dequeueReusableCellWithIdentifier:cellID2];
+        returnCell= cell;
+    }else if(_i ==1){
+        CustomTableViewCell2 * cell =[tableView dequeueReusableCellWithIdentifier:cellID2];
         if (cell == nil)
         {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID2];
+            cell = [[CustomTableViewCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID2];
         }
-    }else if(indexPath.row==2){
-        cell = [tableView dequeueReusableCellWithIdentifier:cellID3];
+        returnCell= cell;
+    }else if(_i==2){
+        CustomTableViewCell3 * cell = [tableView dequeueReusableCellWithIdentifier:cellID3];
         if(cell == nil)
         {
-            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID3];
+            cell=[[CustomTableViewCell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID3];
         }
+        returnCell= cell;
     }else{
     }
-    
-    return cell;
+    return returnCell;
 }
 
 #pragma mark - Events
@@ -139,24 +146,30 @@
 
 -(void)addCell1:(UIButton *)sender{
     _count++;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    _i=0;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_cellCount inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    _cellCount++;
     NSLog(@"log cell1");
     NSLog(@"count = %i",_count);
 }
 
 -(void)addCell2:(UIButton *)sender{
     _count++;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    _i=1;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_cellCount inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    _cellCount++;
     NSLog(@"log cell2");
     NSLog(@"count = %i",_count);
 }
 
 -(void)addCell3:(UIButton *)sender{
     _count++;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+    _i=2;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_cellCount inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    _cellCount++;
     NSLog(@"log cell3");
     NSLog(@"count = %i",_count);
 }
@@ -169,16 +182,16 @@
         _addCellButton2.hidden =NO;
         _addCellButton3.hidden =NO;
         
-        [_addCellButton1 setCenter : CGPointMake(self.view.frame.size.width - 270, self.view.frame.size.height - 55)];
-        [_addCellButton2 setCenter : CGPointMake(self.view.frame.size.width - 210, self.view.frame.size.height - 55)];
-        [_addCellButton3 setCenter : CGPointMake(self.view.frame.size.width - 150, self.view.frame.size.height - 55)];
+        [_addCellButton1 setCenter : CGPointMake(self.view.frame.size.width - 240, self.view.frame.size.height - 55)];
+        [_addCellButton2 setCenter : CGPointMake(self.view.frame.size.width - 160, self.view.frame.size.height - 55)];
+        [_addCellButton3 setCenter : CGPointMake(self.view.frame.size.width - 80, self.view.frame.size.height - 55)];
         [UIView commitAnimations];
         
         _isToggle=false;
     }else{
-        [_addCellButton1 setCenter : CGPointMake(self.view.frame.size.width - 70, self.view.frame.size.height - 55)];
-        [_addCellButton2 setCenter : CGPointMake(self.view.frame.size.width - 70, self.view.frame.size.height - 55)];
-        [_addCellButton3 setCenter : CGPointMake(self.view.frame.size.width - 70, self.view.frame.size.height - 55)];
+        [_addCellButton1 setCenter : CGPointMake(self.view.frame.size.width - 40, self.view.frame.size.height - 55)];
+        [_addCellButton2 setCenter : CGPointMake(self.view.frame.size.width - 40, self.view.frame.size.height - 55)];
+        [_addCellButton3 setCenter : CGPointMake(self.view.frame.size.width - 40, self.view.frame.size.height - 55)];
         [UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
         
         [UIView commitAnimations];
