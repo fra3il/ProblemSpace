@@ -22,7 +22,7 @@
             </objects>
             <point key="canvasLocation" x="1210" y="347"/>
         </scene>
-        <!--Root View Controller-->
+        <!--PhotoViewController-->
         <scene sceneID="zrC-kU-c5k">
             <objects>
                 <tableViewController id="rRW-YK-Zbb" customClass="PhotoViewController" sceneMemberID="viewController">
@@ -43,19 +43,22 @@
                             <outlet property="delegate" destination="rRW-YK-Zbb" id="q7S-ME-eFT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="iMu-hv-GEU">
+                    <navigationItem key="navigationItem" title="PhotoViewController" id="iMu-hv-GEU">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VC4-kL-zYO">
                             <connections>
-                                <segue destination="Wyi-ZB-cRE" kind="show" identifier="SegueFromPhotoToAssetGrid" id="CBE-SC-Vfb"/>
+                                <action selector="actionAdd:" destination="rRW-YK-Zbb" id="oPN-ml-O9C"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Wyi-ZB-cRE" kind="show" identifier="SegueFromPhotoToAssetGrid" id="bS9-ZI-rzt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7oG-LE-PYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1990" y="1176"/>
         </scene>
-        <!--Asset Grid View Controller-->
+        <!--AssetGridViewController-->
         <scene sceneID="Jhy-fi-xqZ">
             <objects>
                 <collectionViewController id="Wyi-ZB-cRE" customClass="AssetGridViewController" sceneMemberID="viewController">
@@ -98,6 +101,17 @@
                             <outlet property="delegate" destination="Wyi-ZB-cRE" id="Agl-Qe-9ry"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="AssetGridViewController" id="8Ef-ZF-qFe">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Lmj-Ha-hhK">
+                            <connections>
+                                <action selector="actionSave:" destination="Wyi-ZB-cRE" id="VDc-sP-kHC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="saveBarButtonItem" destination="Lmj-Ha-hhK" id="gtZ-6p-Ahr"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqk-kg-vIK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

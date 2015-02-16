@@ -10,4 +10,11 @@
 
 @implementation AssetGridViewCell
 
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+
+    self.imageView.layer.borderColor = [UIColor blueColor].CGColor;
+    self.imageView.layer.borderWidth = selected ? 2 : 0;
+}
+
 @end

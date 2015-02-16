@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AssetGridViewControllerDelegate;
+
 @interface AssetGridViewController : UICollectionViewController
+
+@property (weak, nonatomic) id <AssetGridViewControllerDelegate> eventDelegate;
+
+@end
+
+@protocol AssetGridViewControllerDelegate <NSObject>
+
+- (void)didSaveAssets:(NSSet *)assets;
 
 @end

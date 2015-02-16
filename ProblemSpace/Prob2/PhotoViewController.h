@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+// ViewControllers
+#import "AssetGridViewController.h"
 
-@interface PhotoViewController : UITableViewController
+@interface PhotoViewController : UITableViewController <AssetGridViewControllerDelegate>
 
 @end

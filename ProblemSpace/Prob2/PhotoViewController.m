@@ -8,14 +8,19 @@
 
 #import "PhotoViewController.h"
 
+static NSString *const SegueFromPhotoToAssetGrid = @"SegueFromPhotoToAssetGrid";
+
 @implementation PhotoViewController
 
 #pragma mark - UIViewController
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    DLog(@"%@ %@ %@", segue.identifier, segue.sourceViewController, segue.destinationViewController);
 
-    [self performSegueWithIdentifier:@"SegueFromPhotoToAssetGrid" sender:nil];
+    if ([segue.identifier isEqualToString:SegueFromPhotoToAssetGrid]) {
+        AssetGridViewController *assetGridViewController = (AssetGridViewController *)segue.destinationViewController;
+        assetGridViewController.eventDelegate = self;
+    }
 }
 
 #pragma mark - NSObject
@@ -31,11 +36,19 @@
 
 #pragma mark - Action
 
+- (IBAction)actionAdd:(id)sender {
+    [self performSegueWithIdentifier:SegueFromPhotoToAssetGrid sender:nil];
+}
+
 #pragma mark - Override
 
 #pragma mark - Callback
 
 #pragma mark - Delegate
+
+- (void)didSaveAssets:(NSSet *)assets {
+    DLog(@"%@", assets);
+}
 
 #pragma mark - Notification
 

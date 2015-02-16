@@ -43,10 +43,15 @@
 
 @end
 
+static NSInteger MinSelectPhotoCount = 3;
+static NSInteger MaxSelectPhotoCount = 5;
+
 @interface AssetGridViewController () <PHPhotoLibraryChangeObserver>
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButtonItem;
 @property (strong) PHFetchResult *assetsFetchResults;
 @property (strong) PHCachingImageManager *imageManager;
+@property (strong, nonatomic) NSMutableSet *selectedAssetsSet;
 @property CGRect previousPreheatRect;
 
 @end
@@ -62,11 +67,11 @@ static CGSize AssetGridThumbnailSize;
 
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 
-    PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
-    self.assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
+    [self createAssetFetchResults];
+    [self createImageManager];
+    [self configureCollectionView];
 
-    self.imageManager = [[PHCachingImageManager alloc] init];
+    [self updateBarButtonItem];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,6 +89,21 @@ static CGSize AssetGridThumbnailSize;
 }
 
 #pragma mark - Create
+
+- (void)createAssetFetchResults {
+    PHFetchOptions *options = [[PHFetchOptions alloc] init];
+    options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d", PHAssetMediaTypeImage];
+    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+    self.assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
+}
+
+- (void)createImageManager {
+    self.imageManager = [[PHCachingImageManager alloc] init];
+}
+
+- (void)configureCollectionView {
+    self.collectionView.allowsMultipleSelection = YES;
+}
 
 #pragma mark - Public
 
@@ -177,7 +197,19 @@ static CGSize AssetGridThumbnailSize;
     return assets;
 }
 
+- (void)updateBarButtonItem {
+    self.saveBarButtonItem.enabled = (self.selectedAssetsSet.count >= MinSelectPhotoCount) ? YES : NO;
+}
+
 #pragma mark - Action
+
+- (IBAction)actionSave:(id)sender {
+    if ([self.eventDelegate respondsToSelector:@selector(didSaveAssets:)]) {
+        [self.eventDelegate didSaveAssets:self.selectedAssetsSet];
+
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 #pragma mark - Override
 
@@ -215,6 +247,37 @@ static CGSize AssetGridThumbnailSize;
     return cell;
 }
 
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    PHAsset *asset = [self.assetsFetchResults objectAtIndex:indexPath.item];
+    cell.selected = [self.selectedAssetsSet containsObject:asset];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.selectedAssetsSet.count < MaxSelectPhotoCount) {
+        AssetGridViewCell *cell = (AssetGridViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        cell.selected = YES;
+
+        PHAsset *asset = [self.assetsFetchResults objectAtIndex:indexPath.item];
+        [self.selectedAssetsSet addObject:asset];
+    } else {
+        [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    }
+
+    [self updateBarButtonItem];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    AssetGridViewCell *cell = (AssetGridViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    cell.selected = NO;
+
+    PHAsset *asset = [self.assetsFetchResults objectAtIndex:indexPath.item];
+    [self.selectedAssetsSet removeObject:asset];
+
+    [self updateBarButtonItem];
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -234,17 +297,17 @@ static CGSize AssetGridThumbnailSize;
             self.assetsFetchResults = [collectionChanges fetchResultAfterChanges];
 
             UICollectionView *collectionView = self.collectionView;
-
             if (![collectionChanges hasIncrementalChanges] || [collectionChanges hasMoves]) {
                 // we need to reload all if the incremental diffs are not available
                 [collectionView reloadData];
-
             } else {
                 // if we have incremental diffs, tell the collection view to animate insertions and deletions
                 [collectionView performBatchUpdates:^{
                     NSIndexSet *removedIndexes = [collectionChanges removedIndexes];
                     if ([removedIndexes count]) {
                         [collectionView deleteItemsAtIndexPaths:[removedIndexes aapl_indexPathsFromIndexesWithSection:0]];
+
+                        [self.selectedAssetsSet minusSet:[NSSet setWithArray:[collectionChanges removedObjects]]];
                     }
                     NSIndexSet *insertedIndexes = [collectionChanges insertedIndexes];
                     if ([insertedIndexes count]) {
@@ -254,7 +317,9 @@ static CGSize AssetGridThumbnailSize;
                     if ([changedIndexes count]) {
                         [collectionView reloadItemsAtIndexPaths:[changedIndexes aapl_indexPathsFromIndexesWithSection:0]];
                     }
-                } completion:NULL];
+                } completion:^(BOOL finished) {
+                    [self updateBarButtonItem];
+                }];
             }
 
             [self resetCachedAssets];
@@ -263,5 +328,13 @@ static CGSize AssetGridThumbnailSize;
 }
 
 #pragma mark - Setter/Getter
+
+- (NSMutableSet *)selectedAssetsSet {
+    if (_selectedAssetsSet == nil) {
+        _selectedAssetsSet = [[NSMutableSet alloc] init];
+    }
+
+    return _selectedAssetsSet;
+}
 
 @end
