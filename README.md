@@ -1,3 +1,14 @@
+##Prob 2.
+---
+###custom photos layout cell
+
+ - 사진 수에 따라 각기 다른 layout 형태의 custom cell 구현
+ - 사진 선택 가능한 album 구현
+ - 로컬 스토리지 저장
+ - [문제 링크](https://docs.google.com/document/d/1IuTfy_koKnwtyNQWY3mn_nd1-iicULb_VsBqI1gckAU/edit?usp=sharing)
+
+---
+
 ##Prob 1.
 ---
 
