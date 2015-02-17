@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3GM-nD-xaf">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Custom View Controller-->
@@ -26,16 +27,158 @@
         <scene sceneID="zrC-kU-c5k">
             <objects>
                 <tableViewController id="rRW-YK-Zbb" customClass="PhotoViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SGp-5w-W7R">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="SGp-5w-W7R">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellIdentifier" id="qoF-sP-Z8h">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoTableViewCell3" rowHeight="100" id="qoF-sP-Z8h" customClass="PhotoTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qoF-sP-Z8h" id="MUL-7i-d3F">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f2K-US-q6t">
+                                            <rect key="frame" x="99" y="0.0" width="501" height="50"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FzG-Xz-nGX">
+                                            <rect key="frame" x="99" y="50" width="501" height="49"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6iC-N8-Mad">
+                                            <rect key="frame" x="0.0" y="0.0" width="99" height="99"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="6iC-N8-Mad" secondAttribute="height" multiplier="1:1" id="Xgq-Dr-BlW"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="FzG-Xz-nGX" firstAttribute="leading" secondItem="6iC-N8-Mad" secondAttribute="trailing" id="6i4-dH-7Ub"/>
+                                        <constraint firstItem="6iC-N8-Mad" firstAttribute="top" secondItem="MUL-7i-d3F" secondAttribute="top" id="AXE-dW-Rge"/>
+                                        <constraint firstItem="FzG-Xz-nGX" firstAttribute="top" secondItem="f2K-US-q6t" secondAttribute="bottom" id="DeO-JN-lpI"/>
+                                        <constraint firstAttribute="trailing" secondItem="f2K-US-q6t" secondAttribute="trailing" id="G3h-6J-H88"/>
+                                        <constraint firstAttribute="trailing" secondItem="FzG-Xz-nGX" secondAttribute="trailing" id="SWH-yz-z72"/>
+                                        <constraint firstAttribute="bottom" secondItem="FzG-Xz-nGX" secondAttribute="bottom" id="XY0-wA-TY1"/>
+                                        <constraint firstItem="f2K-US-q6t" firstAttribute="top" secondItem="MUL-7i-d3F" secondAttribute="top" id="ZEM-qm-dl5"/>
+                                        <constraint firstAttribute="bottom" secondItem="6iC-N8-Mad" secondAttribute="bottom" id="cJ6-x3-mms"/>
+                                        <constraint firstItem="f2K-US-q6t" firstAttribute="leading" secondItem="6iC-N8-Mad" secondAttribute="trailing" id="h8Z-8l-O7G"/>
+                                        <constraint firstItem="f2K-US-q6t" firstAttribute="height" secondItem="FzG-Xz-nGX" secondAttribute="height" id="kBq-9U-JEc"/>
+                                        <constraint firstItem="6iC-N8-Mad" firstAttribute="leading" secondItem="MUL-7i-d3F" secondAttribute="leading" id="tLe-U5-XoZ"/>
+                                        <constraint firstItem="FzG-Xz-nGX" firstAttribute="top" secondItem="f2K-US-q6t" secondAttribute="bottom" id="vCi-xY-LEJ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outletCollection property="imageViewArray" destination="6iC-N8-Mad" id="ACN-qa-GVp"/>
+                                    <outletCollection property="imageViewArray" destination="f2K-US-q6t" id="xKg-QF-RBX"/>
+                                    <outletCollection property="imageViewArray" destination="FzG-Xz-nGX" id="ewr-UP-3Qs"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoTableViewCell4" rowHeight="100" id="mhb-lU-Xnn" customClass="PhotoTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mhb-lU-Xnn" id="HoQ-Tc-ypj">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oe9-Y4-Ne8">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w8V-BW-S4B">
+                                            <rect key="frame" x="300" y="0.0" width="300" height="50"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fk0-Wu-w5O">
+                                            <rect key="frame" x="0.0" y="50" width="300" height="49"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p7c-9z-utQ">
+                                            <rect key="frame" x="300" y="50" width="300" height="49"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fk0-Wu-w5O" firstAttribute="leading" secondItem="HoQ-Tc-ypj" secondAttribute="leading" id="6o9-F3-ARa"/>
+                                        <constraint firstItem="fk0-Wu-w5O" firstAttribute="top" secondItem="Oe9-Y4-Ne8" secondAttribute="bottom" id="Ccm-72-TRz"/>
+                                        <constraint firstItem="p7c-9z-utQ" firstAttribute="leading" secondItem="fk0-Wu-w5O" secondAttribute="trailing" id="Fhc-v3-AwV"/>
+                                        <constraint firstItem="Oe9-Y4-Ne8" firstAttribute="top" secondItem="HoQ-Tc-ypj" secondAttribute="top" id="Hpo-VY-MVX"/>
+                                        <constraint firstItem="w8V-BW-S4B" firstAttribute="height" secondItem="Oe9-Y4-Ne8" secondAttribute="height" id="JSy-nJ-uPj"/>
+                                        <constraint firstItem="p7c-9z-utQ" firstAttribute="top" secondItem="w8V-BW-S4B" secondAttribute="bottom" id="Nkg-a8-fLZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="w8V-BW-S4B" secondAttribute="trailing" id="PDF-R5-hHO"/>
+                                        <constraint firstItem="w8V-BW-S4B" firstAttribute="top" secondItem="HoQ-Tc-ypj" secondAttribute="top" id="Qn2-Ip-q2R"/>
+                                        <constraint firstAttribute="trailing" secondItem="p7c-9z-utQ" secondAttribute="trailing" id="R7A-31-0Fd"/>
+                                        <constraint firstItem="Oe9-Y4-Ne8" firstAttribute="leading" secondItem="HoQ-Tc-ypj" secondAttribute="leading" id="T5J-hn-wcw"/>
+                                        <constraint firstItem="fk0-Wu-w5O" firstAttribute="width" secondItem="Oe9-Y4-Ne8" secondAttribute="width" id="V2k-1P-2Xb"/>
+                                        <constraint firstItem="fk0-Wu-w5O" firstAttribute="top" secondItem="Oe9-Y4-Ne8" secondAttribute="bottom" id="Vsh-KB-pyu"/>
+                                        <constraint firstItem="fk0-Wu-w5O" firstAttribute="height" secondItem="Oe9-Y4-Ne8" secondAttribute="height" id="XfZ-wt-rlQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="p7c-9z-utQ" secondAttribute="bottom" id="ah6-tR-ep1"/>
+                                        <constraint firstItem="w8V-BW-S4B" firstAttribute="width" secondItem="Oe9-Y4-Ne8" secondAttribute="width" id="cG7-TU-plk"/>
+                                        <constraint firstItem="w8V-BW-S4B" firstAttribute="leading" secondItem="Oe9-Y4-Ne8" secondAttribute="trailing" id="dP0-y9-pfT"/>
+                                        <constraint firstItem="w8V-BW-S4B" firstAttribute="leading" secondItem="Oe9-Y4-Ne8" secondAttribute="trailing" id="dTH-s3-dKs"/>
+                                        <constraint firstItem="p7c-9z-utQ" firstAttribute="leading" secondItem="fk0-Wu-w5O" secondAttribute="trailing" id="enT-cy-ql6"/>
+                                        <constraint firstAttribute="bottom" secondItem="fk0-Wu-w5O" secondAttribute="bottom" id="mAP-gX-1tO"/>
+                                        <constraint firstItem="p7c-9z-utQ" firstAttribute="top" secondItem="w8V-BW-S4B" secondAttribute="bottom" id="xnf-s0-cQI"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outletCollection property="imageViewArray" destination="Oe9-Y4-Ne8" id="V8w-Lu-zhH"/>
+                                    <outletCollection property="imageViewArray" destination="w8V-BW-S4B" id="uJZ-Z8-9GB"/>
+                                    <outletCollection property="imageViewArray" destination="fk0-Wu-w5O" id="p4T-Ni-lB7"/>
+                                    <outletCollection property="imageViewArray" destination="p7c-9z-utQ" id="coo-sP-xyw"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoTableViewCell5" rowHeight="100" id="epi-At-6ul" customClass="PhotoTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="epi-At-6ul" id="hgt-Vl-QCa">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ya0-4Z-Qz8">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="ya0-4Z-Qz8" secondAttribute="height" multiplier="1:1" priority="750" id="2FA-zU-Jjl"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YYv-Oj-py5">
+                                            <rect key="frame" x="200" y="0.0" width="200" height="50"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dTu-ZP-Dt8">
+                                            <rect key="frame" x="400" y="0.0" width="200" height="50"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="49" translatesAutoresizingMaskIntoConstraints="NO" id="1te-ht-x5y">
+                                            <rect key="frame" x="0.0" y="50" width="300" height="49"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xCD-mx-kin">
+                                            <rect key="frame" x="300" y="50" width="300" height="49"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1te-ht-x5y" firstAttribute="top" secondItem="YYv-Oj-py5" secondAttribute="bottom" id="5wf-1O-B1m"/>
+                                        <constraint firstAttribute="bottom" secondItem="1te-ht-x5y" secondAttribute="bottom" id="9Mu-Pm-EqG"/>
+                                        <constraint firstAttribute="trailing" secondItem="dTu-ZP-Dt8" secondAttribute="trailing" id="Aj5-42-57r"/>
+                                        <constraint firstItem="ya0-4Z-Qz8" firstAttribute="height" secondItem="dTu-ZP-Dt8" secondAttribute="height" id="Bn6-ck-f9N"/>
+                                        <constraint firstItem="YYv-Oj-py5" firstAttribute="top" secondItem="hgt-Vl-QCa" secondAttribute="top" id="CkS-RZ-vDb"/>
+                                        <constraint firstItem="1te-ht-x5y" firstAttribute="height" secondItem="xCD-mx-kin" secondAttribute="height" id="EKD-jU-FBS"/>
+                                        <constraint firstItem="xCD-mx-kin" firstAttribute="top" secondItem="dTu-ZP-Dt8" secondAttribute="bottom" id="NV1-JF-DTv"/>
+                                        <constraint firstItem="ya0-4Z-Qz8" firstAttribute="top" secondItem="hgt-Vl-QCa" secondAttribute="top" id="Pqe-VU-UfM"/>
+                                        <constraint firstItem="YYv-Oj-py5" firstAttribute="leading" secondItem="ya0-4Z-Qz8" secondAttribute="trailing" id="RaN-fB-bjv"/>
+                                        <constraint firstItem="ya0-4Z-Qz8" firstAttribute="width" secondItem="dTu-ZP-Dt8" secondAttribute="width" id="Sb5-7l-UDN"/>
+                                        <constraint firstItem="ya0-4Z-Qz8" firstAttribute="width" secondItem="YYv-Oj-py5" secondAttribute="width" id="TEC-sG-jmG"/>
+                                        <constraint firstItem="dTu-ZP-Dt8" firstAttribute="leading" secondItem="YYv-Oj-py5" secondAttribute="trailing" id="U7l-gX-dwb"/>
+                                        <constraint firstItem="xCD-mx-kin" firstAttribute="top" secondItem="YYv-Oj-py5" secondAttribute="bottom" id="WcN-Gj-k2A"/>
+                                        <constraint firstItem="ya0-4Z-Qz8" firstAttribute="leading" secondItem="hgt-Vl-QCa" secondAttribute="leading" id="bio-NE-xai"/>
+                                        <constraint firstAttribute="bottom" secondItem="xCD-mx-kin" secondAttribute="bottom" id="bpO-FJ-3B3"/>
+                                        <constraint firstItem="YYv-Oj-py5" firstAttribute="leading" secondItem="ya0-4Z-Qz8" secondAttribute="trailing" id="cVR-vc-SwQ"/>
+                                        <constraint firstItem="xCD-mx-kin" firstAttribute="leading" secondItem="1te-ht-x5y" secondAttribute="trailing" id="f46-E5-V6e"/>
+                                        <constraint firstItem="dTu-ZP-Dt8" firstAttribute="leading" secondItem="YYv-Oj-py5" secondAttribute="trailing" id="fDr-WB-Bcf"/>
+                                        <constraint firstItem="1te-ht-x5y" firstAttribute="top" secondItem="ya0-4Z-Qz8" secondAttribute="bottom" id="fSU-px-F2z"/>
+                                        <constraint firstItem="dTu-ZP-Dt8" firstAttribute="top" secondItem="hgt-Vl-QCa" secondAttribute="top" id="fmU-dT-DXs"/>
+                                        <constraint firstItem="1te-ht-x5y" firstAttribute="width" secondItem="xCD-mx-kin" secondAttribute="width" id="gNm-CY-fTA"/>
+                                        <constraint firstItem="xCD-mx-kin" firstAttribute="top" secondItem="dTu-ZP-Dt8" secondAttribute="bottom" id="k0F-0g-g7H"/>
+                                        <constraint firstAttribute="trailing" secondItem="xCD-mx-kin" secondAttribute="trailing" id="oMn-MI-4QG"/>
+                                        <constraint firstItem="ya0-4Z-Qz8" firstAttribute="height" secondItem="YYv-Oj-py5" secondAttribute="height" id="u7y-AK-Y9c"/>
+                                        <constraint firstItem="xCD-mx-kin" firstAttribute="leading" secondItem="1te-ht-x5y" secondAttribute="trailing" id="wOS-ik-5fX"/>
+                                        <constraint firstItem="1te-ht-x5y" firstAttribute="leading" secondItem="hgt-Vl-QCa" secondAttribute="leading" id="zlx-vR-dtH"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outletCollection property="imageViewArray" destination="ya0-4Z-Qz8" id="oTa-sa-kUP"/>
+                                    <outletCollection property="imageViewArray" destination="YYv-Oj-py5" id="5DD-tR-O9s"/>
+                                    <outletCollection property="imageViewArray" destination="dTu-ZP-Dt8" id="DF4-QQ-WDT"/>
+                                    <outletCollection property="imageViewArray" destination="1te-ht-x5y" id="Z6P-Ax-6WE"/>
+                                    <outletCollection property="imageViewArray" destination="xCD-mx-kin" id="51m-Cu-jQA"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -56,7 +199,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7oG-LE-PYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1990" y="1176"/>
+            <point key="canvasLocation" x="1963" y="1176"/>
         </scene>
         <!--AssetGridViewController-->
         <scene sceneID="Jhy-fi-xqZ">

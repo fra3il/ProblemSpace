@@ -10,6 +10,7 @@
 		3F1B7ADC1A924D99007F77FA /* AssetGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B7ADB1A924D99007F77FA /* AssetGridViewController.m */; };
 		3F1B7ADF1A924DB9007F77FA /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B7ADE1A924DB9007F77FA /* PhotoViewController.m */; };
 		3F1B7AE21A9253B1007F77FA /* AssetGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B7AE11A9253B1007F77FA /* AssetGridViewCell.m */; };
+		3F5B7E2D1A92B410006D3CCB /* PhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5B7E2C1A92B410006D3CCB /* PhotoTableViewCell.m */; };
 		9A57662D1A8DCF3C002F8B11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A57662C1A8DCF3C002F8B11 /* main.m */; };
 		9A5766301A8DCF3C002F8B11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A57662F1A8DCF3C002F8B11 /* AppDelegate.m */; };
 		9A5766331A8DCF3C002F8B11 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5766321A8DCF3C002F8B11 /* ViewController.m */; };
@@ -44,6 +45,8 @@
 		3F1B7ADE1A924DB9007F77FA /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		3F1B7AE01A9253B1007F77FA /* AssetGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetGridViewCell.h; sourceTree = "<group>"; };
 		3F1B7AE11A9253B1007F77FA /* AssetGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetGridViewCell.m; sourceTree = "<group>"; };
+		3F5B7E2B1A92B410006D3CCB /* PhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTableViewCell.h; sourceTree = "<group>"; };
+		3F5B7E2C1A92B410006D3CCB /* PhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTableViewCell.m; sourceTree = "<group>"; };
 		9A5766271A8DCF3C002F8B11 /* ProblemSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProblemSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A57662B1A8DCF3C002F8B11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A57662C1A8DCF3C002F8B11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -91,14 +94,48 @@
 		3F1B7AD11A9247E4007F77FA /* Prob2 */ = {
 			isa = PBXGroup;
 			children = (
+				3F5B7E221A92B3BB006D3CCB /* PhotoViewController */,
+				3F5B7E231A92B3CD006D3CCB /* AssetGridViewController */,
+			);
+			path = Prob2;
+			sourceTree = "<group>";
+		};
+		3F5B7E221A92B3BB006D3CCB /* PhotoViewController */ = {
+			isa = PBXGroup;
+			children = (
 				3F1B7ADD1A924DB9007F77FA /* PhotoViewController.h */,
 				3F1B7ADE1A924DB9007F77FA /* PhotoViewController.m */,
+				3F5B7E2E1A92B423006D3CCB /* PhotoTableViewCell */,
+			);
+			name = PhotoViewController;
+			sourceTree = "<group>";
+		};
+		3F5B7E231A92B3CD006D3CCB /* AssetGridViewController */ = {
+			isa = PBXGroup;
+			children = (
 				3F1B7ADA1A924D99007F77FA /* AssetGridViewController.h */,
 				3F1B7ADB1A924D99007F77FA /* AssetGridViewController.m */,
+				3F5B7E241A92B3D9006D3CCB /* AssetGridViewCell */,
+			);
+			name = AssetGridViewController;
+			sourceTree = "<group>";
+		};
+		3F5B7E241A92B3D9006D3CCB /* AssetGridViewCell */ = {
+			isa = PBXGroup;
+			children = (
 				3F1B7AE01A9253B1007F77FA /* AssetGridViewCell.h */,
 				3F1B7AE11A9253B1007F77FA /* AssetGridViewCell.m */,
 			);
-			path = Prob2;
+			name = AssetGridViewCell;
+			sourceTree = "<group>";
+		};
+		3F5B7E2E1A92B423006D3CCB /* PhotoTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3F5B7E2B1A92B410006D3CCB /* PhotoTableViewCell.h */,
+				3F5B7E2C1A92B410006D3CCB /* PhotoTableViewCell.m */,
+			);
+			name = PhotoTableViewCell;
 			sourceTree = "<group>";
 		};
 		9A57661E1A8DCF3C002F8B11 = {
@@ -286,6 +323,7 @@
 			files = (
 				3F1B7ADC1A924D99007F77FA /* AssetGridViewController.m in Sources */,
 				9A5766521A8DD134002F8B11 /* CustomViewController.m in Sources */,
+				3F5B7E2D1A92B410006D3CCB /* PhotoTableViewCell.m in Sources */,
 				9A5766331A8DCF3C002F8B11 /* ViewController.m in Sources */,
 				9A5766641A8DD411002F8B11 /* CustomTableViewCell3.m in Sources */,
 				9A57665A1A8DD1E6002F8B11 /* CustomTableViewCell1.m in Sources */,
